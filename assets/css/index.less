@@ -2,10 +2,18 @@
 @breakpoint-medium: 768px;
 @breakpoint-large: 1200px;
 
+*{
+  user-select: none;
+}
+
 body{
   font-family: 'IBM Plex Sans Thai', sans-serif;
   margin: 0;
   padding: 0;
+
+  &[data-loading-assets="true"]{
+    overflow: hidden;
+  }
 }
 
 section{
@@ -15,19 +23,24 @@ section{
   height: 100%;
 
   &[data-section-group="1"] {
-    z-index: 2500;
     background-size: inherit;
     background-position: top center;
     background-color: #8b6b53;
     background-image: url(/assets/images/scene/skybox.png),
       linear-gradient(100deg, rgb(121 100 87) 0%, rgb(131 102 85) 29%, rgb(144 113 88) 50%);
     background-repeat: no-repeat;
+    z-index: 2500;
+
   }
   &[data-section-group="2"] {
     background-color: #7f7f7f;
     background-image: linear-gradient(100deg,#8f8f8f 0,#747474 29%,#8d8d8d 50%);
     background-repeat: no-repeat;
     z-index: 3500;
+
+    > .player > img[data-scroll-type="up"]{
+      max-width: 80px;
+    }
   }
   &[data-section-group="3"] {
     background-color: #303039;
@@ -39,20 +52,30 @@ section{
       background-image: linear-gradient(100deg,#703131 0,#582020 40%,#511414 80%);
       background-repeat: no-repeat;
 
-      &:after{
-        content: "";
-        left: 0;
-        right: 0;
-        height: 18rem;
-        width: 100%;
-        margin: 0 auto;
-        background: linear-gradient(rgb(251 251 251 / 0%) 10%,#b6ae7e) 80%;
+      @media (max-width: @breakpoint-medium){
+        min-height: 205vh !important;
       }
     }
 
-    .scene:nth-child(3){
-      background-image: linear-gradient(100deg,#cdc68b 0,#b7af7f 40%,#aca677 80%);
+    .scene:nth-child(5){
+      background-image: linear-gradient(316deg,#cdc68b 0,#b7af7f 40%,#aca677 80%);
       background-repeat: no-repeat;
+
+      &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 20rem;
+        width: 100%;
+        margin: 0 auto;
+        background: linear-gradient(0deg, rgba(251,251,251,0) 10%,#511414 80%);
+
+        @media (min-width: @breakpoint-large){
+          background: linear-gradient(0deg,rgba(251,251,251,0) 10%,#531c1c 80%);
+        }
+      }
     }
   }
   &[data-section-group="4"] {
@@ -190,5 +213,238 @@ footer{
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+.caption-container{
+  position: relative;
+
+  @media (max-width: @breakpoint-small) and (max-height: @breakpoint-medium){
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+    > .caption{
+      background: rgba(100, 100, 100, 0.35);
+    }
+  }
+
+}
+
+.caption{
+  position: absolute;
+  z-index: 9999;
+
+  &.title{
+    margin-left: auto;
+    margin-right: auto;
+    top: 10rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+    text-shadow: 0 0 20px black;
+
+    @media (max-width: @breakpoint-large){
+      top: 0;
+    }
+  }
+
+  &[data-caption-id="1"]{
+    top: 30rem;
+    left: unset;
+    right: 5rem;
+
+    @media (min-width: @breakpoint-large){
+      right: 20rem;
+    }
+  }
+  &[data-caption-id="2"]{
+    bottom: -50rem;
+    left: 5rem;
+    right: unset;
+
+    @media (min-width: @breakpoint-large){
+      bottom: -50rem;
+      left: 0;
+      right: 20rem;
+    }
+
+    @media (max-width: @breakpoint-large){
+      top: 40rem;
+    }
+  }
+  &[data-caption-id="3"]{
+    top: -30rem;
+    left: unset;
+    right: 5rem;
+
+    @media (min-width: @breakpoint-large){
+      left: 0;
+      right: 0;
+    }
+
+  }
+  &[data-caption-id="4"]{
+    bottom: 40rem;
+    left: unset;
+    right: 18rem;
+
+    @media (min-width: @breakpoint-large){
+      left: 0;
+      right: 40%;
+    }
+
+    @media (min-width: @breakpoint-medium) and (max-width: @breakpoint-large){
+      bottom: 42rem;
+    }
+
+    @media (max-width: @breakpoint-medium){
+      bottom: 70rem;
+    }
+  }
+  &[data-caption-id="5"]{
+    bottom: 50rem;
+    left: unset;
+    right: 5rem;
+
+    @media (min-width: @breakpoint-large){
+      bottom: 25rem;
+      left: 30%;
+      right: 0;
+    }
+
+    @media (min-width: @breakpoint-medium) and (max-width: @breakpoint-large){
+      bottom: 20rem;
+    }
+
+    @media (max-width: @breakpoint-small){
+      bottom: 25rem;
+    }
+  }
+  &[data-caption-id="6"]{
+    top: -50rem;
+    left: unset;
+    right: 5rem;
+
+    @media (max-width: @breakpoint-medium){
+      top: -42rem;
+    }
+
+    @media (min-width: @breakpoint-large){
+      left: 0;
+      right: 0;
+    }
+
+    @media (max-width: @breakpoint-small){
+      top: -45rem;
+    }
+  }
+  &[data-caption-id="7"]{
+    top: -30rem;
+    left: 5rem;
+    right: unset;
+
+    @media (max-width: @breakpoint-small){
+      top: -20rem;
+    }
+  }
+  &[data-caption-id="8"]{
+    right: 15rem;
+    bottom: 55rem;
+
+    @media (max-width: @breakpoint-medium){
+      bottom: 40rem;
+    }
+
+    @media (max-width: @breakpoint-small) and (max-height: @breakpoint-medium){
+      bottom: 50rem;
+    }
+  }
+
+  &[data-caption-id]{
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: x-large;
+    color: #fff;
+    text-shadow: 0 0 20px #000;
+
+    @media (max-width: @breakpoint-medium){
+      left: 0;
+      right: 0;
+    }
+  }
+
+}
+
+.preloader,
+.warning-browser{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+
+  > p{
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    color: white;
+  }
+}
+
+.warning-browser{
+  display: none;
+
+  @media (max-height: 530px) {
+    display: flex;
+  }
+
+  @media (device-aspect-ratio: 5/4) OR (device-aspect-ratio: 1/1){
+    display: flex;
+  }
+
+  @media (max-width: 279px) {
+    display: flex;
+  }
+}
+
+.caption-img{
+  position: absolute;
+  max-width: 240px;
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px #222);
+
+  top: 10rem;
+  left: 5rem;
+
+  > img{
+    width: 100%;
+  }
+
+  > p{
+    text-align: center;
+    font-size: x-large;
+    color: white;
+  }
+
+  @media (max-width: @breakpoint-medium){
+    top: 20rem;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
