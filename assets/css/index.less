@@ -6,6 +6,18 @@
   user-select: none;
 }
 
+html:fullscreen{
+  .fullscreen-info{
+    display: none;
+  }
+}
+
+html:not(:fullscreen){
+  .fullscreen-info{
+    display: none;
+  }
+}
+
 body{
   font-family: 'IBM Plex Sans Thai', sans-serif;
   margin: 0;
@@ -273,7 +285,7 @@ footer{
       right: 20rem;
     }
 
-    @media (max-width: @breakpoint-large){
+    @media (max-width: @breakpoint-medium){
       top: 40rem;
     }
   }
@@ -326,7 +338,7 @@ footer{
     }
   }
   &[data-caption-id="6"]{
-    top: -50rem;
+    top: -44rem;
     left: unset;
     right: 5rem;
 
@@ -382,8 +394,38 @@ footer{
 
 }
 
+.caption-img{
+  position: absolute;
+  max-width: 240px;
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px #222);
+
+  top: 10rem;
+  left: 5rem;
+
+  > img{
+    width: 100%;
+  }
+
+  > p{
+    text-align: center;
+    font-size: x-large;
+    color: white;
+  }
+
+  @media (max-width: @breakpoint-medium){
+    top: 20rem;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .preloader,
-.warning-browser{
+.warning-browser,
+.fullscreen-info{
   position: fixed;
   height: 100%;
   width: 100%;
@@ -418,33 +460,25 @@ footer{
   @media (max-width: 279px) {
     display: flex;
   }
+
+  @media (max-width: 645px) AND (max-height: 595px){
+    display: flex;
+  }
 }
 
-.caption-img{
-  position: absolute;
-  max-width: 240px;
+.fullscreen-info{
+  cursor: pointer;
+}
+
+.scroll-down{
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  filter: drop-shadow(5px 5px 5px #222);
-
-  top: 10rem;
-  left: 5rem;
-
-  > img{
-    width: 100%;
-  }
-
-  > p{
-    text-align: center;
-    font-size: x-large;
-    color: white;
-  }
-
-  @media (max-width: @breakpoint-medium){
-    top: 20rem;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  background: #21212170;
+  display: none;
+  margin: 0;
+  color: white;
+  font-size: xxx-large;
+  text-align: center;
+  z-index: 9999;
 }
